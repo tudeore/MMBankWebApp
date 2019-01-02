@@ -58,6 +58,7 @@ public class AccountController extends HttpServlet {
 			String name = request.getParameter("accountHolderName");
 			double accountBalance = Double.parseDouble(request.getParameter("accountBalance"));
 			boolean salary = request.getParameter("isSalaried").equalsIgnoreCase("yes")?true:false;
+			System.out.println(salary);
 			System.out.println("Account Created");
 			try {
 				savingsAccountService.createNewAccount(name, accountBalance,salary );
@@ -67,6 +68,7 @@ public class AccountController extends HttpServlet {
 				e.printStackTrace();
 			}
 			break;
+			
 		case "/updateAccount.mm" :
 			response.sendRedirect("updateAccountForm.html");
 			break;
