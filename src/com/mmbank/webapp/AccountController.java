@@ -55,11 +55,12 @@ public class AccountController extends HttpServlet {
 			response.sendRedirect("addAccountForm.html");
 			break;
 		case "/addAccountForm.mm":	
-			String name = request.getParameter("Account Holder Name");
-			double salary = Double.parseDouble(request.getParameter("Account Balance"));
+			String name = request.getParameter("accountHolderName");
+			double accountBalance = Double.parseDouble(request.getParameter("accountBalance"));
+			boolean salary = request.getParameter("isSalaried").equalsIgnoreCase("yes")?true:false;
 			System.out.println("Account Created");
 			try {
-				savingsAccountService.createNewAccount(name, salary, true);
+				savingsAccountService.createNewAccount(name, accountBalance,salary );
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			} catch (SQLException e) {
@@ -68,6 +69,14 @@ public class AccountController extends HttpServlet {
 			break;
 		case "/updateAccount.mm" :
 			response.sendRedirect("updateAccountForm.html");
+			break;
+		case "updateAccountForm.mm" :
+			String name1 = request.getParameter("accountHolderName");
+			double accountBalance1 = Double.parseDouble(request.getParameter("accountBalance"));
+			boolean salary1 = request.getParameter("isSalaried").equalsIgnoreCase("yes")?true:false;
+			System.out.println("account updated");
+			//savingAccuntService.updateAcount();
+			
 		}
 			
 		
